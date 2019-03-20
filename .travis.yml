@@ -34,7 +34,7 @@ script:
 deploy:
   provider: releases
   file: "archive.zip"
-  api_key: $travis  # Set in the settings page of your repository, as a secure variable
+  api_key: $semantic # Set in the settings page of your repository, as a secure variable
   keep-history: true
   
   on:
@@ -42,9 +42,7 @@ deploy:
   skip_cleanup: true
   all_branches: true
   tags: true
-
-after_deploy:
-  - npm run semantic-release
+ 
 
   # trying new things
 #deploy:
