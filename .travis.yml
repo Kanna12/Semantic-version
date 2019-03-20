@@ -42,7 +42,9 @@ deploy:
   skip_cleanup: true
   all_branches: true
   tags: true
- 
+
+after_deploy:
+  - npm run semantic-release
 
   # trying new things
 #deploy:
