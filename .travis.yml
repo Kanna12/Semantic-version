@@ -16,44 +16,8 @@ os:
 # before_script:
 # - git lfs pull
 
-stages:
-  - install
-  - compile-other
-    if: os = linux   
-  - compile-windows
-    if: os = windows
-  - deploy
-
-
-jobs:
-  include:
-    - stage: install
-      script:
-        - git config --global user.name "kanna12"
-        - git config --global user.email "kgoku98@gmail.com"
-        - npm install
-        - npm install -g electron electron-packager electron-builder
-    - stage: compile-other
-      script:
-        - npm run dist
-        - pwd; ls -ltr .; zip -r archive.zip ./dist;
-    - stage: compile-windows
-      script:
-        - npm run dist
-        - jar -cMf archive.zip ./dist
-    - stage: deploy
-      script:
-      
-        provider: releases
-        file: "archive.zip"
-        api_key: $semantic # Set in the settings page of your repository, as a secure variable
-        keep-history: true
-      
-        on:
-        repo: Kanna12/Semantic-version
-        skip_cleanup: true
-        all_branches: true
-        tags: true
+script:
+  - echo $TRAVIS_OS_NAME
         
 # install:
   
@@ -65,7 +29,7 @@ jobs:
   # - npm run dist
   # - if [[ "$TRAVIS_OS_NAME" == "linux" ]] || [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pwd; ls -ltr .; zip -r archive.zip ./dist; fi
   # - if: os = windows 
-    # jar -cMf archive.zip ./dist
+    # jar -cMf archive.zip 
   
 # deploy:
   # provider: releases
