@@ -3,9 +3,9 @@
 # See https://github.com/travis-ci/travis-ci/issues/8836
 sudo: required
 
-# language: node_js
-# node_js:
-  # - "7"
+language: node_js
+node_js:
+  - "7"
 os: 
  - linux
  - osx
