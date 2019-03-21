@@ -3,31 +3,45 @@ sudo: required
 language: node_js
 node_js:
   - "7"
-os: 
- - linux
- - osx
+#os: 
+ #- linux
+ #- osx
 # before_install:
 # - brew install git-lfs
-
 # before_script:
 # - git lfs pull
-
-
-
 install:
-  
   - git config --global user.name "kanna12"
   - git config --global user.email "kgoku98@gmail.com"
   - npm install
   - npm install -g electron electron-packager electron-builder
-script:
-  - npm run dist
-  - pwd
-  - ls -ltr .
-  - zip -r archive.zip ./dist
+#script:
+  #- npm run dist
+  #- pwd
+  #- ls -ltr .
+  #- zip -r archive.zip ./dist
   # - git add ./release-builds
   # - git commit -m "Build successful 1.0.0"
   # - git push origin master
+ matrix:
+  include:
+  - os: linux
+    script: 
+        - npm run dist
+        - ls -ltr .
+        - zip -r archive.zip ./dist
+   
+  - os: osx
+      script: 
+        - npm run dist
+        - ls -ltr .
+        - zip -r archive.zip ./dist
+  - os: windows
+       script: 
+        - npm run dist
+        - ls -ltr .
+        
+  
   
 deploy:
   provider: releases
@@ -41,7 +55,6 @@ deploy:
   all_branches: true
   tags: true
  
-
   # trying new things
 #deploy:
 # new
