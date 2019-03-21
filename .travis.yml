@@ -27,7 +27,7 @@ install:
 script:
   - npm run dist
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]] || [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pwd; ls -ltr .; zip -r archive.zip ./dist; fi
-  - if [[ "$TRAVIS_OS_NAME" == "windows"]]; then jar -cMf archive.zip ./dist; fi
+  - if [[ "$TRAVIS_OS_NAME" == "windows"]]; then jar -cMf archive.zip ./dist fi
   # - git add ./release-builds
   # - git commit -m "Build successful 1.0.0"
   # - git push origin master
