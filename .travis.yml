@@ -1,56 +1,36 @@
+#dist: trusty # needs Ubuntu Trusty
+# Note: if you switch to sudo: false, you'll need to launch chrome with --no-sandbox.
+# See https://github.com/travis-ci/travis-ci/issues/8836
 sudo: required
 
 language: node_js
 node_js:
   - "7"
-#os: 
- #- linux
- #- osx
+os: 
+ - linux
+ - osx
+ - windows  
 # before_install:
 # - brew install git-lfs
+
 # before_script:
 # - git lfs pull
+
+
+
 install:
+  
   - git config --global user.name "kanna12"
   - git config --global user.email "kgoku98@gmail.com"
   - npm install
   - npm install -g electron electron-packager electron-builder
-#script:
-  #- npm run dist
-  #- pwd
-  #- ls -ltr .
-  #- zip -r archive.zip ./dist
+script:
+  - npm run dist
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] || [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pwd; ls -ltr .; zip -r archive.zip ./dist; fi
+  - if: os = windows jar -cMF archive.zip ./dist
   # - git add ./release-builds
   # - git commit -m "Build successful 1.0.0"
   # - git push origin master
- jobs:
-  include:
-  - stage : "Linux"
-  
-   
-    - os: linux
-        - npm run dist
-        - ls -ltr .
-        - zip -r archive.zip ./dist
-        
-      script: ./Linux
-  - stage : "Osx"
-  
-      
-      - os: osx
-        - npm run dist
-        - ls -ltr .
-        - zip -r archive.zip ./dist
-        
-     script: ./Osx
-  - stage : "windows"
-  
-       
-       - os : windows
-        - npm run dist
-        - ls -ltr .
-    script: ./Windows
-  
   
 deploy:
   provider: releases
@@ -64,6 +44,7 @@ deploy:
   all_branches: true
   tags: true
  
+
   # trying new things
 #deploy:
 # new
