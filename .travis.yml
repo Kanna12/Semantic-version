@@ -23,20 +23,26 @@ install:
   # - git add ./release-builds
   # - git commit -m "Build successful 1.0.0"
   # - git push origin master
- matrix:
+ jobs:
   include:
-  - os: linux
+  - stage : "Linux"
+  
     script: 
+    - os: linux
         - npm run dist
         - ls -ltr .
         - zip -r archive.zip ./dist
-  - os: osx
+  - stage : "Osx"
+  
       script: 
+      - os: osx
         - npm run dist
         - ls -ltr .
         - zip -r archive.zip ./dist
-  - os: windows
+  - stage : "windows"
+  
        script: 
+       - os : windows
         - npm run dist
         - ls -ltr .
         
