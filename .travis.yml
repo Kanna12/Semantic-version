@@ -24,21 +24,19 @@ install:
   - npm install -g electron electron-packager electron-builder
 script:
   - npm run dist
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] || [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pwd; ls -ltr .; zip -r archive.zip ./dist; fi
+  - pwd
+  - ls -ltr .
+  - zip -r archive.zip ./dist
   
 deploy:
   provider: releases
   file: "archive.zip"
   api_key: $semantic # Set in the settings page of your repository, as a secure variable
-  keep-history: true
-  
   on:
   repo: Kanna12/Semantic-version
   skip_cleanup: true
   all_branches: true
-  tags: true
  
-
   # trying new things
 #deploy:
 # new
