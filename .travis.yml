@@ -30,7 +30,6 @@ install:
         - npm run dist
         - ls -ltr .
         - zip -r archive.zip ./dist
-   
   - os: osx
       script: 
         - npm run dist
