@@ -27,21 +27,21 @@ install:
   include:
   - stage : "Linux"
   
-    script: 
+    script: ./Linux
     - os: linux
         - npm run dist
         - ls -ltr .
         - zip -r archive.zip ./dist
   - stage : "Osx"
   
-      script: 
+      script: ./Osx
       - os: osx
         - npm run dist
         - ls -ltr .
         - zip -r archive.zip ./dist
   - stage : "windows"
   
-       script: 
+       script: ./Windows
        - os : windows
         - npm run dist
         - ls -ltr .
