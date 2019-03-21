@@ -19,7 +19,7 @@ os:
 stages:
   - install
   - compile-other
-    if: os = linux || os = osx   
+    if: os = linux   
   - compile-windows
     if: os = windows
   - deploy
