@@ -23,7 +23,7 @@ install:
   - npm install
   - npm install -g electron electron-packager electron-builder
 script:
-  - npm run package-mac
+  - npm run dist
   - pwd
   - ls -ltr .
   - zip -r archive.zip ./release-builds
