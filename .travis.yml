@@ -22,6 +22,9 @@ install:
   - git config --global user.email "kgoku98@gmail.com"
   - npm install
   - npm install -g electron electron-packager electron-builder
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
+  
 script:
   - npm run dist
   - pwd
@@ -36,6 +39,7 @@ deploy:
   repo: Kanna12/Semantic-version
   skip_cleanup: true
   all_branches: true
+  overwrite: true
  
   # trying new things
 #deploy:
