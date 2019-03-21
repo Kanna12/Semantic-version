@@ -9,41 +9,34 @@ sudo: required
 os: 
  - linux
  - osx
- - windows  
 # before_install:
 # - brew install git-lfs
 
 # before_script:
 # - git lfs pull
 
+
+install:
+  
+  - git config --global user.name "kanna12"
+  - git config --global user.email "kgoku98@gmail.com"
+  - npm install
+  - npm install -g electron electron-packager electron-builder
 script:
-  - echo $TRAVIS_OS_NAME
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] ;
-    echo " hello i am linux";
-    fi
-# install:
+  - npm run dist
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] || [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pwd; ls -ltr .; zip -r archive.zip ./dist; fi
   
-  # - git config --global user.name "kanna12"
-  # - git config --global user.email "kgoku98@gmail.com"
-  # - npm install
-  # - npm install -g electron electron-packager electron-builder
-# script:
-  # - npm run dist
-  # - if [[ "$TRAVIS_OS_NAME" == "linux" ]] || [[ "$TRAVIS_OS_NAME" == "osx" ]]; then pwd; ls -ltr .; zip -r archive.zip ./dist; fi
-  # - if: os = windows 
-    # jar -cMf archive.zip 
+deploy:
+  provider: releases
+  file: "archive.zip"
+  api_key: $semantic # Set in the settings page of your repository, as a secure variable
+  keep-history: true
   
-# deploy:
-  # provider: releases
-  # file: "archive.zip"
-  # api_key: $semantic # Set in the settings page of your repository, as a secure variable
-  # keep-history: true
-  
-  # on:
-  # repo: Kanna12/Semantic-version
-  # skip_cleanup: true
-  # all_branches: true
-  # tags: true
+  on:
+  repo: Kanna12/Semantic-version
+  skip_cleanup: true
+  all_branches: true
+  tags: true
  
 
   # trying new things
