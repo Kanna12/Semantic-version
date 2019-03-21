@@ -6,8 +6,9 @@ sudo: required
 language: node_js
 node_js:
   - "7"
-os: windows
-
+os: 
+ - linux
+ - osx
 # before_install:
 # - brew install git-lfs
 
@@ -38,7 +39,7 @@ deploy:
   keep-history: true
   
   on:
-  repo: Kanna12/Update
+  repo: Kanna12/Semantic-version
   skip_cleanup: true
   all_branches: true
   tags: true
