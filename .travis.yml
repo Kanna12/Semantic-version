@@ -18,8 +18,9 @@ os:
 
 script:
   - echo $TRAVIS_OS_NAME
-  - if: os=linux
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]] 
     echo " hello i am linux"
+    fi
 # install:
   
   # - git config --global user.name "kanna12"
