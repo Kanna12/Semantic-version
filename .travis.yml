@@ -31,6 +31,10 @@ install:
   - git tag $TRAVIS_TAG
   
 script:
+  - npm run dist
+  - pwd
+  - ls -ltr .
+  - zip -r archive.zip ./dist
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       docker run --rm \
@@ -40,11 +44,6 @@ script:
         -v ~/.cache/electron-builder:/root/.cache/electron-builder \
         electronuserland/builder:wine \
         /bin/bash -c "npm install && npm run dist && ls -ltr ."
-    else
-      npm run dist
-      pwd
-      ls -ltr .
-      zip -r archive.zip ./dist
     fi
 
   
