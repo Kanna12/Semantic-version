@@ -38,7 +38,7 @@ script:
   - npm run dist
   - pwd
   - ls -ltr .
-  - zip -r archive.zip ./release-builds
+  - zip -r archive.zip ./dist
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run pack-win ; pwd ; ls -ltr .; zip -r win-archive.zip ./dist; fi
 
   
