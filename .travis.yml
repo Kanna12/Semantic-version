@@ -49,15 +49,16 @@ script:
   - npm run pack-win
   - pwd
   - ls -ltr .
+  - zip -r archive.zip ./dist
 
   
-# deploy:
-  # provider: releases
-  # file: "archive.zip"
-  # api_key: $semantic # Set in the settings page of your repository, as a secure variable
-  # on:
-  # repo: Kanna12/Semantic-version
-  # skip_cleanup: true
-  # all_branches: true
-  # overwrite: true
+deploy:
+  provider: releases
+  file: "archive.zip"
+  api_key: $semantic # Set in the settings page of your repository, as a secure variable
+  on:
+  repo: Kanna12/Semantic-version
+  skip_cleanup: true
+  all_branches: true
+  overwrite: true
  
