@@ -29,11 +29,15 @@ install:
   - npm install -g electron electron-packager electron-builder
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
-  - wget https://dl.winehq.org/wine-builds/Release.key
-  - sudo apt-key add Release.key
-  - sudo apt-add-repository 'https://dl.winehq.org/wine-builds/ubuntu/'
+  - sudo apt-add-repository 'deb http://httpredir.debian.org/debian jessie-backports main'
   - sudo apt-get update
-  - sudo apt-get install wine
+  - sudo apt install \
+      wine/jessie-backports \
+      wine32/jessie-backports \
+      wine64/jessie-backports \
+      libwine/jessie-backports \
+      libwine:i386/jessie-backports \
+      fonts-wine/jessie-backports
   - wine --version
   
 script:
