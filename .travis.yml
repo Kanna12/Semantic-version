@@ -31,8 +31,6 @@ install:
   - git tag $TRAVIS_TAG
   - sudo apt-get install wine
   - wine --version
-  - sudo dpkg --add-architecture i386 && apt-get update && apt-get install wine32
-  - wine --version
   
 script:
   - npm run pack-win
