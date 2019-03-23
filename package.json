@@ -10,13 +10,20 @@
     "scripts": {
         "start": "electron .",
         "pack": "build --dir",
-        "dist": "build"
-        },
-"build": {
-  "appId": "your.kanna",
-  "mac": {
-    "target": "dmg",
-  "icon": "build/icon.png"  
-        }
-}
+        "dist": "build",
+		"pack-win": "build --dir --win",
+        "dist-win": "build --win"
+    },
+	"build": {
+	  "appId": "your.kanna",
+	  "mac": {
+		"target": "dmg",
+	  "icon": "build/icon.png"  
+			},
+	  "win": {
+		"target": [
+			"zip"
+		]
+	   }
+	}
 }

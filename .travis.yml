@@ -9,11 +9,7 @@ node_js:
 os: 
  - linux
  - osx
-# before_install:
-# - brew install git-lfs
 
-# before_script:
-# - git lfs pull
 
 
 install:
@@ -24,54 +20,23 @@ install:
   - npm install -g electron electron-packager electron-builder
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
+  - apt-get install wine
+  - wine --version
+  - dpkg --add-architecture i386 && apt-get update && apt-get install wine32
+  - wine --version
   
 script:
-  - npm run dist
+  - npm run pack-win
   - pwd
   - ls -ltr .
-  - zip -r archive.zip ./dist
   
-deploy:
-  provider: releases
-  file: "archive.zip"
-  api_key: $semantic # Set in the settings page of your repository, as a secure variable
-  on:
-  repo: Kanna12/Semantic-version
-  skip_cleanup: true
-  all_branches: true
-  overwrite: true
+# deploy:
+  # provider: releases
+  # file: "archive.zip"
+  # api_key: $semantic # Set in the settings page of your repository, as a secure variable
+  # on:
+  # repo: Kanna12/Semantic-version
+  # skip_cleanup: true
+  # all_branches: true
+  # overwrite: true
  
-  # trying new things
-#deploy:
-# new
- #  provider: npm 
-  # email: "kgoku98@gmail.com"
-   #api_key: "4bcf2159-1f36-4313-a03b-26c3a07fc1f7"
-    
-   # github-token: $GITHUB_TOKEN
-   # file: "release-build"
-    #skip_cleanup: true
-    #on:
-     #tags: true
-     #branch: master
- 
-#- echo "Unit Tests"
-#new line added 
-#- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then xvfb-run yarn test; else yarn test; fi
-
-#- echo "E2E Tests"
-#- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then xvfb-run yarn test:electron; else yarn test:electron; fi
-
-#- echo "Deploy linux version to GitHub"
-#- if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_OS_NAME" == "linux" ]]; then yarn release:linux; fi
-
-#- echo "Deploy windows version to GitHub"
-#- if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn release:win; fi
-#SHSJOPSKK#
-#- echo "Deploy mac version to GitHub"
-#- if [[ "$TRAVIS_BRANCH" == "master" ]] && [[ "$TRAVIS_OS_NAME" == "osx" ]]; then dist release:mac; fi
-#I like you 
-#before_cache:
- # - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then rm -rf $HOME/.cache/electron-builder/wine; fi
-#    - npm run 
-# new line added 
