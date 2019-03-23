@@ -31,7 +31,8 @@ install:
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
   - sudo dpkg --add-architecture i386
-  - wget -nc https://dl.winehq.org/wine-builds/winehq.key && sudo apt-key add winehq.key && sudo apt update -y
+  # - wget -nc https://dl.winehq.org/wine-builds/winehq.key && sudo apt-key add winehq.key && sudo apt update -y
+  - wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
   - sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
   - sudo apt install aptitude
   - sudo aptitude install winehq-stable
