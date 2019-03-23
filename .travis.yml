@@ -6,11 +6,20 @@ sudo: required
 language: node_js
 node_js:
   - "7"
+
 os: 
  - linux
- - osx
+ # - osx
 
 
+cache:
+  directories:
+    - node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+
+before_cache:
+  - rm -rf $HOME/.cache/electron-builder/wine
 
 install:
   
@@ -29,6 +38,7 @@ script:
   - npm run pack-win
   - pwd
   - ls -ltr .
+
   
 # deploy:
   # provider: releases
