@@ -29,9 +29,9 @@ install:
   - npm install -g electron electron-packager electron-builder
   - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
-  - apt-get install wine
+  - sudo apt-get install wine
   - wine --version
-  - dpkg --add-architecture i386 && apt-get update && apt-get install wine32
+  - sudo dpkg --add-architecture i386 && apt-get update && apt-get install wine32
   - wine --version
   
 script:
