@@ -32,7 +32,7 @@ install:
   - git tag $TRAVIS_TAG
   - sudo dpkg --add-architecture i386
   - wget -nc https://dl.winehq.org/wine-builds/winehq.key && sudo apt-key add winehq.key && sudo apt update -y
-  - sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ trusty main'
+  - sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
   - sudo apt install --install-recommends winehq-stable
   - wine --version
   
