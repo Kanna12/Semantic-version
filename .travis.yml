@@ -38,7 +38,7 @@ install:
   - tar -xvf wine-4.0.tar.xz
   - cd wine-4.0/
   - sudo ./configure 
-  - sudo ./configure --enable-win64
+  # - sudo ./configure --enable-win64
   - sudo make && sudo make install
   # - sudo apt-get install wine
   - wine --version
