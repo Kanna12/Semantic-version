@@ -50,7 +50,7 @@ deploy:
       condition: "$TRAVIS_OS_NAME = osx"
       repo: Kanna12/Semantic-version
       skip_cleanup: true
-      all_branches: true
+      all_branches: false
       overwrite: true
 
   provider: releases
@@ -60,5 +60,5 @@ deploy:
       condition: "$TRAVIS_OS_NAME = linux"
       repo: Kanna12/Semantic-version
       skip_cleanup: true
-      all_branches: true
+      all_branches: false
       overwrite: true
