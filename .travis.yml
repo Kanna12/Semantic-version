@@ -39,7 +39,7 @@ script:
   - pwd
   - ls -ltr .
   - zip -r archive.zip ./dist
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then rm -rf dist && npm run pack-win && pwd && ls -ltr .&& zip -r win-archive.zip ./dist fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then rm -rf dist; npm run pack-win ; pwd ; ls -ltr .; zip -r win-archive.zip ./dist; fi
 
   
 deploy:
@@ -47,18 +47,17 @@ deploy:
       file: "archive.zip"
       api_key: $semantic # Set in the settings page of your repository, as a secure variable
       on:
-      condition: "$TRAVIS_OS_NAME = osx"
       repo: Kanna12/Semantic-version
       skip_cleanup: true
       all_branches: true
       overwrite: true
 
-    - provider: releases
-      file: "win-archive.zip"
-      api_key: $semantic # Set in the settings page of your repository, as a secure variable
-      on:
-      condition: "$TRAVIS_OS_NAME = linux"
-      repo: Kanna12/Semantic-version
-      skip_cleanup: true
-      all_branches: true
-      overwrite: true
+    # - provider: releases
+      # file: "win-archive.zip"
+      # api_key: $semantic # Set in the settings page of your repository, as a secure variable
+      # on:
+      # condition: "$TRAVIS_OS_NAME = linux"
+      # repo: Kanna12/Semantic-version
+      # skip_cleanup: true
+      # all_branches: true
+      # overwrite: true
