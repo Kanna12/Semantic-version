@@ -51,8 +51,9 @@ deploy:
       skip_cleanup: true
       all_branches: true
       overwrite: true
-
+   
     - provider: releases
+    
       file: "win-archive.zip"
       api_key: $semantic # Set in the settings page of your repository, as a secure variable
       on:
